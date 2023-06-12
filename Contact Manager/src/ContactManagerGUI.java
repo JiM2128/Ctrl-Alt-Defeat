@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.Pattern;
@@ -8,6 +10,11 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
     private ContactManager contactManager = new ContactManager();
     private JTextField nameField, phoneField, emailField;
     private JTextArea displayArea;
+
+    // Create a new Color for forest green and a new Font for the text
+    private Color lightCyan = new Color(240,255,255);
+    private Font textFont = new Font("Arial", Font.BOLD, 14);
+    private LineBorder blackBorder = new LineBorder(Color.BLACK, 3);
     
     public ContactManagerGUI() {
         super("Contact Manager");
@@ -16,46 +23,66 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
 
         // Input fields and labels
         JPanel inputPanel = new JPanel(new GridLayout(5, 2));
-        inputPanel.add(new JLabel(" Name: "));
+        inputPanel.setBackground(lightCyan);
+        inputPanel.setBorder(blackBorder);
+
+        JLabel nameLabel = new JLabel(" Name: ");
+        nameLabel.setFont(textFont);
+        inputPanel.add(nameLabel);
+
         nameField = new JTextField(20);
+        nameField.setFont(textFont);
         inputPanel.add(nameField);
 
-        inputPanel.add(new JLabel(" Phone: "));
+        JLabel phoneLabel = new JLabel(" Phone: ");
+        phoneLabel.setFont(textFont);
+        inputPanel.add(phoneLabel);
+
         phoneField = new JTextField(20);
+        phoneField.setFont(textFont);
         inputPanel.add(phoneField);
 
-        inputPanel.add(new JLabel(" Email: "));
+        JLabel emailLabel = new JLabel(" Email: ");
+        emailLabel.setFont(textFont);
+        inputPanel.add(emailLabel);
+
         emailField = new JTextField(20);
+        emailField.setFont(textFont);
         inputPanel.add(emailField);
 
-
-        // Buttons
         JButton addButton = new JButton("Add Contact");
+        addButton.setFont(textFont);
         addButton.setSize(20, 10);
         addButton.addActionListener(this);
         inputPanel.add(addButton);
 
         JButton clearButton = new JButton("Clear");
+        clearButton.setFont(textFont);
         clearButton.addActionListener(this);
         inputPanel.add(clearButton);
 
         JButton editButton = new JButton("Edit");
+        editButton.setFont(textFont);
         editButton.addActionListener(this);
         inputPanel.add(editButton);
 
         JButton searchButton = new JButton("Search");
+        searchButton.setFont(textFont);
         searchButton.addActionListener(this);
         inputPanel.add(searchButton);
 
         add(inputPanel, BorderLayout.NORTH);
-        
-        // Adding area for displaying contacts
+
         displayArea = new JTextArea(20, 50);
-        displayArea.setEditable(false);        
+        displayArea.setFont(textFont);
+        displayArea.setBackground(lightCyan);
+        displayArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(displayArea);
+        scrollPane.setBackground(lightCyan);
         add(scrollPane, BorderLayout.CENTER);
-        
-        
+
+
+        // Configure the frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setSize(400, 500);
