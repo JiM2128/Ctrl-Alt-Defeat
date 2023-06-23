@@ -39,6 +39,6 @@ public class Contact {
 
     
     public String toString() {
-        return name + "   " + phone + "   " + email;
+        return name + "\t" + phone + "\t" + email;
     }
 }

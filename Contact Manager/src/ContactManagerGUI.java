@@ -13,7 +13,8 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
 
     // Create a new Color for forest green and a new Font for the text
     private Color lightCyan = new Color(240,255,255);
-    private Font textFont = new Font("Arial", Font.BOLD, 14);
+    //private Font textFont = new Font("Arial", Font.BOLD, 14);
+    private Font textFont = new Font(Font.MONOSPACED, Font.BOLD, 14);
     private LineBorder blackBorder = new LineBorder(Color.BLACK, 3);
     
     public ContactManagerGUI() {
@@ -74,9 +75,12 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
         add(inputPanel, BorderLayout.NORTH);
 
         displayArea = new JTextArea(20, 50);
+        displayArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 12));
+
         displayArea.setFont(textFont);
         displayArea.setBackground(lightCyan);
         displayArea.setEditable(false);
+
         JScrollPane scrollPane = new JScrollPane(displayArea);
         scrollPane.setBackground(lightCyan);
         add(scrollPane, BorderLayout.CENTER);
@@ -92,7 +96,7 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
         displayContacts();        
     }
 
-    // Button behavoir
+    // Button behaviour
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
@@ -121,11 +125,11 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
     
     void displayContacts() {
         displayArea.setText("");
-        displayArea.append("---------------------------------------------------------------------------------------------\n");
+        displayArea.append("-----------------------------------------------------------------\n");
 
         for (Contact contact : contactManager.getContacts()) {
             displayArea.append(contact.toString() + "\n");
-            displayArea.append("---------------------------------------------------------------------------------------------\n");
+            displayArea.append("-----------------------------------------------------------------\n");
         }
     }
     
@@ -136,7 +140,7 @@ public class ContactManagerGUI extends JFrame implements ActionListener, InputVa
     }
 
     // Method for checking if input data is correct
-    // if(input correct) - contact gets added, else - does nothing 
+    // if(input correct) - contact gets added, else - shows error message 
     void checkInput(String name, String phone, String email){
 
         if(name.isEmpty() || phone.isEmpty() || email.isEmpty()){

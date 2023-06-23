@@ -15,6 +15,8 @@ public class EditWindow extends JFrame implements ActionListener, InputVarifier{
     private ContactManagerGUI contactManagerGUI;
     private int index;
 
+    private Font textFont = new Font(Font.MONOSPACED, Font.BOLD, 14);
+    private Color lightCyan = new Color(240,255,255);
     
     public EditWindow(ContactManager contactManager, ContactManagerGUI contactManagerGUI) {
 
@@ -26,8 +28,14 @@ public class EditWindow extends JFrame implements ActionListener, InputVarifier{
         // Panel for the dropdown menu
         JPanel selectionPanel = new JPanel(new GridLayout(2, 1));
 
-        contactList = new JComboBox<>(contacts.toArray(new Contact[0]));        
-        selectionPanel.add(new JLabel("Select Contact:"));
+        contactList = new JComboBox<>(contacts.toArray(new Contact[0]));     
+        contactList.setFont(textFont);
+        
+        JLabel selectLb = new JLabel("Select Contact:");
+        selectLb.setFont(textFont);
+        selectionPanel.add(selectLb);
+
+        selectionPanel.setBackground(lightCyan);
         selectionPanel.add(contactList);
 
         add(selectionPanel, BorderLayout.NORTH);
@@ -35,34 +43,50 @@ public class EditWindow extends JFrame implements ActionListener, InputVarifier{
         
         // Creating components
         JPanel inputPanel = new JPanel(new GridLayout(5, 1));
-        inputPanel.add(new JLabel(" Name: "));
+        inputPanel.setBackground(lightCyan);
+
+        JLabel nameLb = new JLabel(" Name: ");
+        nameLb.setFont(textFont);
+        inputPanel.add(nameLb);
+
         nameField = new JTextField(20);
+        nameField.setFont(textFont);
         inputPanel.add(nameField);
         
-        inputPanel.add(new JLabel(" Phone: "));
+        JLabel phoneLb = new JLabel(" Phone: ");
+        nameLb.setFont(textFont);
+        inputPanel.add(phoneLb);
+
         phoneField = new JTextField(20);
+        phoneField.setFont(textFont);
         inputPanel.add(phoneField);
         
-        inputPanel.add(new JLabel(" Email: "));
+        JLabel emailLb = new JLabel(" Email: ");
+        nameLb.setFont(textFont);
+        inputPanel.add(emailLb);
+
         emailField = new JTextField(20);
+        emailField.setFont(textFont);
         inputPanel.add(emailField);
         
         add(inputPanel, BorderLayout.CENTER);
 
         // Adding the buttons
-        JButton addButton = new JButton("Save");
-        addButton.setSize(20, 10);
-        addButton.addActionListener(this);
-        inputPanel.add(addButton);
+        JButton saveButton = new JButton("Save");
+        saveButton.setSize(20, 10);
+        saveButton.addActionListener(this);
+        saveButton.setFont(textFont);
+        inputPanel.add(saveButton);
         
-        JButton clearButton = new JButton("Delete");
-        clearButton.addActionListener(this);
-        inputPanel.add(clearButton);
+        JButton deleteButton = new JButton("Delete");
+        deleteButton.addActionListener(this);
+        deleteButton.setFont(textFont);
+        inputPanel.add(deleteButton);
         
         // Configure the frame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
-        setSize(400, 250);
+        setSize(500, 250);
         setVisible(true);
 
 

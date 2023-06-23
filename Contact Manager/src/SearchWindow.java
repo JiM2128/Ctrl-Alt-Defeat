@@ -10,6 +10,10 @@ public class SearchWindow extends JFrame implements ActionListener{
     private JTextField queryField;
     private ContactManager contactManager;
 
+    private Color lightCyan = new Color(240,255,255);
+    private Font textFont = new Font(Font.MONOSPACED, Font.BOLD, 14);
+
+
     public SearchWindow(ContactManager contactManager){
 
         super("Search Results");
@@ -19,18 +23,27 @@ public class SearchWindow extends JFrame implements ActionListener{
         
         // Input fields and labels
         JPanel inputPanel = new JPanel(new GridLayout(3, 1));
-        inputPanel.add(new JLabel("Enter a search query:"));
+        inputPanel.setBackground(lightCyan);
+
+        JLabel queryLabel = new JLabel("Enter a search query:");
+        queryLabel.setFont(textFont);
+        inputPanel.add(queryLabel);
+        
         queryField = new JTextField(20);
+        queryField.setFont(textFont);
         inputPanel.add(queryField);
 
         JButton searButton = new JButton("Search");
         searButton.addActionListener(this);
+        searButton.setFont(textFont);
         inputPanel.add(searButton);
 
         add(inputPanel, BorderLayout.NORTH);
 
         // Area for display search results
         displayArea = new JTextArea(20, 50);
+        displayArea.setFont(textFont);
+        displayArea.setBackground(lightCyan);
         displayArea.setEditable(false);        
 
         JScrollPane scrollPane = new JScrollPane(displayArea);
